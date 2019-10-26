@@ -1,0 +1,4 @@
+export const types = {
+    INCREMENT_OCTAVE: "INCREMENT_OCTAVE",
+    DECREMENT_OCTAVE: "DECREMENT_OCTAVE",
+}

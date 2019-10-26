@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useMemo } from 'react';
 import './App.css';
+import NoteKey from './components/NoteKey';
+import { connect } from 'react-redux';
+import { keyPressed, keyReleased } from './store/currentlyPressedKeys/actions';
+import { Synth } from './services/Synth';
 
-function App() {
+function App({ keyPress, keyRelease }) {
+  const synthInstance = useMemo(() => new Synth(), []);
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    body.addEventListener('keydown', e => keyPress(e.key));
+    body.addEventListener('keyup', e => keyRelease(e.key));
+
+    return () => {
+      body.removeEventListener('keydown', e => keyPress(e.key));
+      body.removeEventListener('keyup', e => keyRelease(e.key));
+    }
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NoteKey note="C" keyToPress="a" synth={synthInstance}/>
+      <NoteKey note="C#" keyToPress="w" synth={synthInstance}/>
+      <NoteKey note="D" keyToPress="s" synth={synthInstance}/>
+      <NoteKey note="D#" keyToPress="e" synth={synthInstance}/>
+      <NoteKey note="E" keyToPress="d" synth={synthInstance}/>
+      <NoteKey note="F" keyToPress="f" synth={synthInstance}/>
+      <NoteKey note="F#" keyToPress="t" synth={synthInstance}/>
+      <NoteKey note="G" keyToPress="g" synth={synthInstance}/>
+      <NoteKey note="G#" keyToPress="y" synth={synthInstance}/>
+      <NoteKey note="A" keyToPress="h" synth={synthInstance}/>
+      <NoteKey note="A#" keyToPress="u" synth={synthInstance}/>
+      <NoteKey note="B" keyToPress="j" synth={synthInstance}/>
+      <NoteKey note="C" keyToPress="k" synth={synthInstance}/>
     </div>
   );
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  keyPress: key => dispatch(keyPressed(key)),
+  keyRelease: key => dispatch(keyReleased(key)),
+})
+
+export default connect(null, mapDispatchToProps)(App);
