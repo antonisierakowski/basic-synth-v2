@@ -2,16 +2,15 @@ import React, { useEffect } from 'react'
 import './NoteKey.css';
 import { connect } from 'react-redux';
 
-function NoteKey({ note, isPressed, synth, currentOctave }) {
+function NoteKey({ note, isPressed, synth }) {
   useEffect(() => {
-    const currentNote = `${note + currentOctave}`;
     if (isPressed) {
-      console.log(`attack: ${currentNote}`);
-      synth.noteOn(currentNote);
+      console.log(`attack: ${note}`);
+      synth.noteOn(note);
     }
     if (!isPressed) {
-      console.log(`release: ${currentNote}`);
-      synth.noteOff(currentNote);
+      console.log(`release: ${note}`);
+      synth.noteOff(note);
     }
   }, [isPressed])
 
@@ -27,7 +26,6 @@ function NoteKey({ note, isPressed, synth, currentOctave }) {
 
 const mapStateToProps = (state, ownProps) => ({
   isPressed: state.pressedKeysReducer.currentlyPressedKeys.includes(ownProps.keyToPress),
-  currentOctave: state.currentOctaveReducer.currentOctave,
 });
 
 export default connect(mapStateToProps)(NoteKey);
