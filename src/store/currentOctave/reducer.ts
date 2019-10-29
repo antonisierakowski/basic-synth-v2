@@ -1,13 +1,18 @@
 import { types } from './types';
+import { CONSTANTS } from '../../constants';
+import { AnyAction } from 'redux';
 
-const MAX_OCTAVE = 7;
-const MIN_OCTAVE = 0;
+const { MIN_OCTAVE, MAX_OCTAVE } = CONSTANTS;
 
-const initialState = {
+export interface CurrentOctaveState {
+    currentOctave: number,
+}
+
+const initialState: CurrentOctaveState = {
     currentOctave: 4,
 };
 
-export const currentOctaveReducer = (state = initialState, action) => {
+export const currentOctaveReducer = (state: CurrentOctaveState = initialState, action: AnyAction) => {
     const { currentOctave } = state;
     switch (action.type) {
         case types.INCREMENT_OCTAVE:

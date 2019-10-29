@@ -1,10 +1,15 @@
 import { types } from './types';
+import { AnyAction } from 'redux';
 
-const initialState = {
+export interface CurrentlyPressedKeysState {
+    currentlyPressedKeys: string[],
+}
+
+const initialState: CurrentlyPressedKeysState = {
     currentlyPressedKeys: [],
 };
 
-export const pressedKeysReducer = (state = initialState, action) => {
+export const pressedKeysReducer = (state: CurrentlyPressedKeysState = initialState, action: AnyAction) => {
     switch (action.type) {
         case types.KEY_PRESSED:
             if (!state.currentlyPressedKeys.includes(action.payload.key)) {
