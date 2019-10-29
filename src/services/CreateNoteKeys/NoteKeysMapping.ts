@@ -1,56 +1,58 @@
 import { NoteKey } from '../../interfaces/NoteKey'
+import { KeyboardInput } from '../../interfaces/KeyboardInput'
+import { NoteName } from '../../interfaces/NoteName'
 
 export const NoteKeysMapping: NoteKey[] = [
     {
-        note: 'C',
-        key: 'a',
+        note: NoteName.C,
+        key: KeyboardInput.a,
     },
     {
-        note: 'C#',
-        key: 'w',
+        note: NoteName.Csharp,
+        key: KeyboardInput.w,
     },
     {
-        note: 'D',
-        key: 's',
+        note: NoteName.D,
+        key: KeyboardInput.s,
     },
     {
-        note: 'D#',
-        key: 'e',
+        note: NoteName.Dsharp,
+        key: KeyboardInput.e,
     },
     {
-        note: 'E',
-        key: 'd',
+        note: NoteName.E,
+        key: KeyboardInput.d,
     },
     {
-        note: 'F',
-        key: 'f',
+        note: NoteName.F,
+        key: KeyboardInput.f,
     },
     {
-        note: 'F#',
-        key: 't',
+        note: NoteName.Fsharp,
+        key: KeyboardInput.t,
     },
     {
-        note: 'G',
-        key: 'g',
+        note: NoteName.G,
+        key: KeyboardInput.g,
     },
     {
-        note: 'G#',
-        key: 'y',
+        note: NoteName.Gsharp,
+        key: KeyboardInput.y,
     },
     {
-        note: 'A',
-        key: 'h',
+        note: NoteName.A,
+        key: KeyboardInput.h,
     },
     {
-        note: 'A#',
-        key: 'u',
+        note: NoteName.Asharp,
+        key: KeyboardInput.u,
     },
     {
-        note: 'B',
-        key: 'j',
+        note: NoteName.B,
+        key: KeyboardInput.j,
     },
     {
-        note: 'C',
-        key: 'k',
+        note: NoteName.C,
+        key: KeyboardInput.k,
     },
 ]

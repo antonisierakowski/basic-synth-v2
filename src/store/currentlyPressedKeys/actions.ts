@@ -1,5 +1,6 @@
-import { types } from './types';
+import { KEY_PRESSED, KEY_RELEASED } from './types';
 import { AnyAction } from 'redux';
+import { KeyboardInput } from '../../interfaces/KeyboardInput';
 
 export interface KeyPressed extends AnyAction {
     payload: {
@@ -13,15 +14,15 @@ export interface KeyReleased extends AnyAction {
     },
 }
 
-export const keyPressed = (key: string): KeyPressed => ({
-    type: types.KEY_PRESSED,
+export const keyPressed = (key: KeyboardInput): KeyPressed => ({
+    type: KEY_PRESSED,
     payload: {
         key: key.toLowerCase(),
     },
 })
 
-export const keyReleased = (key: string): KeyReleased => ({
-    type: types.KEY_RELEASED,
+export const keyReleased = (key: KeyboardInput): KeyReleased => ({
+    type: KEY_RELEASED,
     payload: {
         key: key.toLowerCase(),
     },

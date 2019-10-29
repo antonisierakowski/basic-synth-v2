@@ -1,4 +1,4 @@
-import { types } from './types';
+import { KEY_PRESSED, KEY_RELEASED } from './types';
 import { AnyAction } from 'redux';
 
 export interface CurrentlyPressedKeysState {
@@ -11,7 +11,7 @@ const initialState: CurrentlyPressedKeysState = {
 
 export const pressedKeysReducer = (state: CurrentlyPressedKeysState = initialState, action: AnyAction) => {
     switch (action.type) {
-        case types.KEY_PRESSED:
+        case KEY_PRESSED:
             if (!state.currentlyPressedKeys.includes(action.payload.key)) {
                 return {
                     ...state,
@@ -22,7 +22,7 @@ export const pressedKeysReducer = (state: CurrentlyPressedKeysState = initialSta
                 }
             }
             return state;
-        case types.KEY_RELEASED:
+        case KEY_RELEASED:
             if (Object.values(state.currentlyPressedKeys).includes(action.payload.key)) {
                 return {
                     ...state,

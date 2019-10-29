@@ -1,0 +1,17 @@
+export enum KeyboardInput {
+    w = 'w',
+    e = 'e',
+    t = 't',
+    y = 'y',
+    u = 'u',
+    a = 'a',
+    s = 's',
+    d = 'd',
+    f = 'f',
+    g = 'g',
+    h = 'h',
+    j = 'j',
+    k = 'k',
+    z = 'z',
+    x = 'x',
+}

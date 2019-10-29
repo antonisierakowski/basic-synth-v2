@@ -1,4 +1,6 @@
+import { KeyboardInput } from './KeyboardInput';
+import { NoteName } from './NoteName';
 export interface NoteKey {
-    note: string,
-    key: string,
+    note: NoteName,
+    key: KeyboardInput,
 }
