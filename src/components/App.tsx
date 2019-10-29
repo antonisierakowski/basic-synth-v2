@@ -2,12 +2,21 @@ import React, { useEffect, useMemo } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { keyPressed, keyReleased } from '../store/currentlyPressedKeys/actions';
-import { Synth } from '../services/Synth';
-import { CreateNoteKeys } from '../factories/CreateNoteKeys/CreateNoteKeys'
-import { NoteKeysMapping } from '../factories/CreateNoteKeys/NoteKeysMapping'
+import { Synth } from '../services/Synth/Synth';
+import { CreateNoteKeys } from '../services/CreateNoteKeys/CreateNoteKeys';
+import { NoteKeysMapping } from '../services/CreateNoteKeys/NoteKeysMapping';
+import { Dispatch } from 'redux';
+import { KeyPressed, KeyReleased } from '../store/currentlyPressedKeys/actions';
+import { AppState } from '../store';
 
-function App({ keyPress, keyRelease, currentOctave }) {
-  const synthInstance = useMemo(() => new Synth(), []);
+type Props = {
+  keyPress: (key: string) => KeyPressed;
+  keyRelease: (key: string) => KeyReleased;
+  currentOctave: number;
+}
+
+const App: React.FunctionComponent<Props> = ({ keyPress, keyRelease, currentOctave }: Props): JSX.Element => {
+  const synthInstance: Synth = useMemo(() => new Synth(), []);
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -27,11 +36,11 @@ function App({ keyPress, keyRelease, currentOctave }) {
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState): Partial<Props> => ({
   currentOctave: state.currentOctaveReducer.currentOctave,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch): Partial<Props> => ({
   keyPress: key => dispatch(keyPressed(key)),
   keyRelease: key => dispatch(keyReleased(key)),
 })

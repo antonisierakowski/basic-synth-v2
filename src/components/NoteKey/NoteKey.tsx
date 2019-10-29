@@ -1,8 +1,18 @@
 import React, { useEffect } from 'react'
 import './NoteKey.css';
 import { connect } from 'react-redux';
+import { Synth } from '../../services/Synth/Synth';
+import { AppState } from '../../store';
+import { isKeyPressedSelector } from '../../store/currentlyPressedKeys/selectors';
 
-function NoteKey({ note, isPressed, synth }) {
+type Props = {
+  note: string;
+  isPressed: boolean;
+  synth: Synth;
+  keyToPress: string,
+}
+
+const NoteKey: React.FunctionComponent<Props> = ({ note, isPressed, synth }: Props): JSX.Element => {
   useEffect(() => {
     if (isPressed) {
       console.log(`attack: ${note}`);
@@ -24,8 +34,8 @@ function NoteKey({ note, isPressed, synth }) {
   )
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  isPressed: state.pressedKeysReducer.currentlyPressedKeys.includes(ownProps.keyToPress),
+const mapStateToProps = (state: AppState, ownProps: Props): Partial<Props> => ({
+  isPressed: isKeyPressedSelector(state, ownProps.keyToPress),
 });
 
 export default connect(mapStateToProps)(NoteKey);
