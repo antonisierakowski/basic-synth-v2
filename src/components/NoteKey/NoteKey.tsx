@@ -4,22 +4,21 @@ import { connect } from 'react-redux';
 import { Synth } from '../../services/Synth/Synth';
 import { AppState } from '../../store';
 import { isKeyPressedSelector } from '../../store/currentlyPressedKeys/selectors';
+import { KeyboardInput } from '../../interfaces/KeyboardInput';
 
 type Props = {
   note: string;
   isPressed: boolean;
   synth: Synth;
-  keyToPress: string,
+  keyToPress: KeyboardInput,
 }
 
 const NoteKey: React.FunctionComponent<Props> = ({ note, isPressed, synth }: Props): JSX.Element => {
   useEffect(() => {
     if (isPressed) {
-      console.log(`attack: ${note}`);
       synth.noteOn(note);
     }
     if (!isPressed) {
-      console.log(`release: ${note}`);
       synth.noteOff(note);
     }
   }, [isPressed])

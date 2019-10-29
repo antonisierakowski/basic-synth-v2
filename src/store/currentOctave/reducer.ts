@@ -1,4 +1,4 @@
-import { types } from './types';
+import { INCREMENT_OCTAVE, DECREMENT_OCTAVE } from './types';
 import { CONSTANTS } from '../../constants';
 import { AnyAction } from 'redux';
 
@@ -15,14 +15,14 @@ const initialState: CurrentOctaveState = {
 export const currentOctaveReducer = (state: CurrentOctaveState = initialState, action: AnyAction) => {
     const { currentOctave } = state;
     switch (action.type) {
-        case types.INCREMENT_OCTAVE:
+        case INCREMENT_OCTAVE:
             if (currentOctave < MAX_OCTAVE) {
                 return {
                     currentOctave: currentOctave + 1,
                 }
             }
             return state;
-        case types.DECREMENT_OCTAVE:
+        case DECREMENT_OCTAVE:
             if (currentOctave > MIN_OCTAVE) {
                 return {
                     currentOctave: currentOctave - 1,
